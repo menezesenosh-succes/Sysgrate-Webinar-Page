@@ -1,0 +1,975 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>Zoom Workplace for Enterprise Teams | Sysgrate</title>
+<meta name="description" content="Deploy Zoom Workplace with Sysgrate — Zoom Platinum Partner with certified Zoom architects, 24×7 support and enterprise deployment across India, Singapore, UAE and Malaysia.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{
+  --navy-950:#060F2A;
+  --navy-900:#0A1A3F;
+  --navy-800:#0F2557;
+  --navy-700:#1B2F6E;
+  --indigo:#2E3192;
+  --violet:#6B4FA8;
+  --pink:#D98DBF;
+  --blue:#2D8CFF;
+  --ink:#0A1A3F;
+  --body:#4A5578;
+  --muted:#7A849F;
+  --line:#E4E8F2;
+  --soft:#F5F7FC;
+  --white:#FFFFFF;
+  --grad:linear-gradient(90deg,#E39AC6 0%,#8E62B5 45%,#2E3192 100%);
+  --radius:18px;
+  --shadow:0 1px 2px rgba(10,26,63,.04),0 12px 32px -12px rgba(10,26,63,.14);
+  --shadow-lg:0 30px 60px -20px rgba(10,26,63,.28);
+  --ease:cubic-bezier(.2,.7,.2,1);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;scroll-padding-top:84px}
+body{font-family:"Plus Jakarta Sans",system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif;color:var(--body);background:#fff;font-size:15.5px;line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+img{max-width:100%;display:block}
+a{color:inherit;text-decoration:none}
+button{font:inherit;cursor:pointer;border:0;background:none;color:inherit}
+h1,h2,h3,h4{color:var(--ink);line-height:1.15;letter-spacing:-.02em;font-weight:800}
+.wrap{max-width:1200px;margin:0 auto;padding-inline:24px}
+section{padding-block:84px;position:relative}
+.eyebrow{display:inline-flex;align-items:center;gap:8px;font-size:12.5px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--indigo)}
+.eyebrow::before{content:"";width:22px;height:3px;border-radius:3px;background:var(--grad)}
+.h2{font-size:clamp(28px,3.4vw,40px);margin:12px 0 14px}
+.lead{font-size:17px;color:var(--body);max-width:640px}
+.grad-text{background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent}
+.center{text-align:center}.center .lead{margin-inline:auto}
+
+/* Buttons */
+.btn{display:inline-flex;align-items:center;gap:10px;padding:14px 22px;border-radius:12px;font-weight:700;font-size:15px;transition:transform .25s var(--ease),box-shadow .25s var(--ease),background .25s;white-space:nowrap}
+.btn svg{width:18px;height:18px;transition:transform .25s var(--ease)}
+.btn:hover svg{transform:translateX(3px)}
+.btn-primary{background:var(--navy-900);color:#fff;box-shadow:0 10px 24px -10px rgba(10,26,63,.6)}
+.btn-primary:hover{background:var(--indigo);transform:translateY(-2px)}
+.btn-ghost{border:1.5px solid var(--line);color:var(--ink);background:#fff}
+.btn-ghost:hover{border-color:var(--navy-900);transform:translateY(-2px)}
+.btn-light{background:#fff;color:var(--navy-900)}
+.btn-light:hover{transform:translateY(-2px);box-shadow:0 12px 30px -10px rgba(0,0,0,.4)}
+.btn-outline-light{border:1.5px solid rgba(255,255,255,.3);color:#fff}
+.btn-outline-light:hover{border-color:#fff;transform:translateY(-2px)}
+
+/* Progress + Nav */
+#progress{position:fixed;top:0;left:0;height:3px;width:0;background:var(--grad);z-index:100}
+.nav{position:sticky;top:0;z-index:50;background:rgba(255,255,255,.82);backdrop-filter:saturate(180%) blur(14px);-webkit-backdrop-filter:saturate(180%) blur(14px);border-bottom:1px solid transparent;transition:border-color .3s,box-shadow .3s}
+.nav.scrolled{border-color:var(--line);box-shadow:0 6px 20px -14px rgba(10,26,63,.25)}
+.nav .wrap{display:flex;align-items:center;justify-content:space-between;gap:28px;height:74px;transition:height .3s}
+.nav.scrolled .wrap{height:64px}
+.nav .wrap{max-width:1280px}
+.logo{flex:none}
+.logo img{height:34px;width:auto;max-width:none}
+.nav-cta{flex:none}
+.nav-links{display:flex;gap:22px;margin-left:auto;font-weight:600;font-size:14px;color:var(--ink);white-space:nowrap}
+.nav-links a{position:relative;padding:6px 0;opacity:.8;transition:opacity .2s}
+.nav-links a:hover,.nav-links a.active{opacity:1}
+.nav-links a::after{content:"";position:absolute;left:0;bottom:0;height:2px;width:0;background:var(--grad);transition:width .3s var(--ease)}
+.nav-links a:hover::after,.nav-links a.active::after{width:100%}
+.nav-cta{display:flex;gap:10px;align-items:center}
+.nav-cta .btn{padding:11px 18px;font-size:14px}
+.burger{display:none;width:42px;height:42px;border-radius:10px;border:1px solid var(--line);align-items:center;justify-content:center}
+.burger svg{width:20px;height:20px}
+.mobile-menu{display:none}
+
+/* Hero */
+.hero{padding-block:56px 70px;overflow:hidden;background:
+  radial-gradient(900px 480px at 88% 10%,rgba(142,98,181,.10),transparent 60%),
+  radial-gradient(700px 420px at 0% 100%,rgba(45,140,255,.07),transparent 60%),#fff}
+.hero-grid{display:grid;grid-template-columns:1.02fr 1fr;gap:56px;align-items:center}
+.badge{display:inline-flex;align-items:center;gap:10px;padding:7px 14px 7px 7px;border-radius:999px;background:#fff;border:1px solid var(--line);font-size:13px;font-weight:600;color:var(--ink);box-shadow:var(--shadow)}
+.badge b{background:var(--navy-900);color:#fff;border-radius:999px;padding:3px 10px;font-size:11.5px;letter-spacing:.04em}
+.hero h1{font-size:clamp(36px,4.8vw,58px);margin:22px 0 16px}
+.hero .sub{font-size:19px;font-weight:600;color:var(--ink);margin-bottom:12px}
+.hero p.desc{font-size:16px;max-width:560px}
+.hero-cta{display:flex;gap:12px;flex-wrap:wrap;margin:28px 0 30px}
+.trust{display:grid;grid-template-columns:repeat(2,max-content);gap:12px 36px;padding-top:22px;border-top:1px solid var(--line);justify-content:start}
+.trust div{display:flex;align-items:center;gap:8px;font-size:13.5px;font-weight:600;color:var(--ink)}
+.trust svg{width:18px;height:18px;color:var(--indigo);flex:none}
+
+/* Hero mockup */
+.mock-wrap{position:relative;perspective:1400px}
+.mock{background:#fff;border-radius:20px;border:1px solid var(--line);box-shadow:var(--shadow-lg);overflow:hidden;transform:rotateY(-6deg) rotateX(3deg);transition:transform .6s var(--ease)}
+.mock-wrap:hover .mock{transform:rotateY(0) rotateX(0)}
+.mock-top{display:flex;align-items:center;gap:7px;padding:12px 16px;border-bottom:1px solid var(--line);background:var(--soft)}
+.mock-top i{width:10px;height:10px;border-radius:50%;background:#E1E5EF}
+.mock-top span{margin-left:10px;font-size:12px;font-weight:600;color:var(--muted)}
+.mock-top .live{margin-left:auto;display:flex;align-items:center;gap:6px;font-size:11px;font-weight:700;color:#E5484D}
+.mock-top .live::before{content:"";width:7px;height:7px;border-radius:50%;background:#E5484D;animation:blink 1.4s infinite}
+.mock-body{display:grid;grid-template-columns:52px 1fr;min-height:360px}
+.mock-side{background:var(--navy-900);display:flex;flex-direction:column;align-items:center;gap:14px;padding:16px 0}
+.mock-side i{width:26px;height:26px;border-radius:8px;background:rgba(255,255,255,.12)}
+.mock-side i.on{background:var(--blue)}
+.mock-main{padding:14px;display:grid;grid-template-rows:auto auto;gap:12px;background:#FBFCFE}
+.tiles{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+.tile{aspect-ratio:4/3;border-radius:10px;position:relative;display:flex;align-items:center;justify-content:center;background:linear-gradient(145deg,#1B2F6E,#0A1A3F);overflow:hidden}
+.tile:nth-child(2){background:linear-gradient(145deg,#3D3A8F,#1B2F6E)}
+.tile:nth-child(3){background:linear-gradient(145deg,#6B4FA8,#2E3192)}
+.tile:nth-child(4){background:linear-gradient(145deg,#243B7A,#0F2557)}
+.tile:nth-child(5){background:linear-gradient(145deg,#2E3192,#0A1A3F)}
+.tile:nth-child(6){background:linear-gradient(145deg,#8E62B5,#3D3A8F)}
+.avatar{width:34px;height:34px;border-radius:50%;background:rgba(255,255,255,.18);color:#fff;font-size:12px;font-weight:700;display:flex;align-items:center;justify-content:center}
+.tile .nm{position:absolute;left:6px;bottom:5px;font-size:9.5px;color:rgba(255,255,255,.85);font-weight:600}
+.tile.speaking{box-shadow:inset 0 0 0 2px #3FD17A}
+.tile.speaking .avatar{animation:pulse 1.2s infinite}
+.ai-card{background:#fff;border:1px solid var(--line);border-radius:12px;padding:12px 14px;box-shadow:var(--shadow)}
+.ai-head{display:flex;align-items:center;gap:8px;font-size:12px;font-weight:700;color:var(--ink);margin-bottom:8px}
+.spark{width:22px;height:22px;border-radius:7px;background:var(--grad);display:flex;align-items:center;justify-content:center}
+.spark svg{width:13px;height:13px;color:#fff}
+.ai-head em{margin-left:auto;font-style:normal;font-size:10.5px;color:var(--muted);font-weight:600}
+.ai-line{display:flex;gap:8px;align-items:flex-start;font-size:11.5px;color:var(--body);line-height:1.45;padding:3px 0;opacity:0;transform:translateY(6px);transition:all .45s var(--ease)}
+.ai-line.show{opacity:1;transform:none}
+.ai-line b{color:var(--ink)}
+.ai-line .dot{width:6px;height:6px;border-radius:50%;background:var(--violet);margin-top:5px;flex:none}
+.float{position:absolute;background:#fff;border:1px solid var(--line);border-radius:12px;padding:10px 12px;box-shadow:var(--shadow-lg);display:flex;align-items:center;gap:10px;font-size:12px;font-weight:600;color:var(--ink);animation:floaty 6s ease-in-out infinite}
+.float small{display:block;font-weight:500;color:var(--muted);font-size:10.5px}
+.float .ic{width:32px;height:32px;border-radius:9px;display:flex;align-items:center;justify-content:center;color:#fff}
+.float .ic svg{width:17px;height:17px}
+.f1{top:-18px;right:-10px}
+.f1 .ic{background:var(--navy-900)}
+.f2{bottom:-26px;left:-30px;animation-delay:-3s}
+.f2 .ic{background:#18A957}
+.stripes{position:absolute;right:-60px;bottom:-40px;width:220px;opacity:.14;z-index:-1}
+
+/* Stripes motif */
+.motif{display:flex;flex-direction:column;gap:7px}
+.motif span{height:9px;border-radius:2px;background:var(--grad);transform:skewX(-25deg)}
+
+/* Value section */
+.value-grid{display:grid;grid-template-columns:.9fr 1.3fr;gap:56px;align-items:start}
+.value-intro{position:sticky;top:100px}
+.stat-row{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:28px}
+.stat{padding:16px;border-radius:14px;background:var(--soft);border:1px solid var(--line)}
+.stat strong{display:block;font-size:26px;color:var(--ink);font-weight:800;letter-spacing:-.02em}
+.stat span{font-size:12.5px;font-weight:600;color:var(--muted)}
+.note{margin-top:22px;padding:16px 18px;border-left:3px solid var(--indigo);background:linear-gradient(90deg,rgba(46,49,146,.06),transparent);border-radius:0 12px 12px 0;font-size:14.5px;color:var(--ink);font-weight:500}
+.cards6{display:grid;grid-template-columns:repeat(2,1fr);gap:16px}
+.vcard{padding:22px;border-radius:var(--radius);border:1px solid var(--line);background:#fff;transition:transform .35s var(--ease),box-shadow .35s var(--ease),border-color .35s;position:relative;overflow:hidden}
+.vcard::after{content:"";position:absolute;left:0;top:0;height:3px;width:0;background:var(--grad);transition:width .45s var(--ease)}
+.vcard:hover{transform:translateY(-4px);box-shadow:var(--shadow);border-color:transparent}
+.vcard:hover::after{width:100%}
+.ico{width:44px;height:44px;border-radius:12px;background:rgba(46,49,146,.08);color:var(--indigo);display:flex;align-items:center;justify-content:center;margin-bottom:14px;transition:background .3s,color .3s}
+.ico svg{width:22px;height:22px}
+.vcard:hover .ico{background:var(--navy-900);color:#fff}
+.vcard h3{font-size:16.5px;margin-bottom:6px;letter-spacing:-.01em}
+.vcard p{font-size:14px}
+
+/* Tabs */
+.bg-soft{background:var(--soft)}
+.tabs{display:inline-flex;gap:6px;padding:6px;border-radius:14px;background:#fff;border:1px solid var(--line);margin:30px auto 34px;flex-wrap:wrap;justify-content:center;box-shadow:var(--shadow)}
+.tab{padding:11px 20px;border-radius:10px;font-weight:700;font-size:14.5px;color:var(--body);display:flex;align-items:center;gap:8px;transition:all .3s var(--ease)}
+.tab svg{width:17px;height:17px}
+.tab:hover{color:var(--ink)}
+.tab.active{background:var(--navy-900);color:#fff;box-shadow:0 8px 18px -8px rgba(10,26,63,.6)}
+.panel{display:none;grid-template-columns:1fr 1fr;gap:48px;align-items:center;background:#fff;border:1px solid var(--line);border-radius:24px;padding:40px;box-shadow:var(--shadow)}
+.panel.active{display:grid;animation:fadeUp .5s var(--ease)}
+.panel h3{font-size:26px;margin:8px 0 22px}
+.feat{display:flex;gap:14px;padding:14px 0;border-top:1px solid var(--line)}
+.feat:first-of-type{border-top:0;padding-top:0}
+.feat .n{width:28px;height:28px;border-radius:8px;flex:none;background:var(--grad);color:#fff;font-size:12.5px;font-weight:800;display:flex;align-items:center;justify-content:center}
+.feat h4{font-size:15.5px;margin-bottom:3px;letter-spacing:-.01em}
+.feat p{font-size:14px}
+.visual{background:linear-gradient(160deg,var(--navy-800),var(--navy-950));border-radius:18px;padding:24px;min-height:340px;position:relative;overflow:hidden;color:#fff}
+.visual::before{content:"";position:absolute;inset:auto -80px -80px auto;width:260px;height:260px;border-radius:50%;background:radial-gradient(circle,rgba(142,98,181,.45),transparent 70%)}
+.vtitle{font-size:12px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:rgba(255,255,255,.55);margin-bottom:14px;position:relative}
+.glass{background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.12);border-radius:12px;padding:12px 14px;position:relative;font-size:13px}
+.stack{display:flex;flex-direction:column;gap:10px;position:relative}
+.bubble{max-width:82%;padding:10px 13px;border-radius:12px;font-size:13px;background:rgba(255,255,255,.09)}
+.bubble.me{align-self:flex-end;background:var(--blue)}
+.bubble small{display:block;font-size:10.5px;opacity:.6;margin-bottom:2px;font-weight:600}
+.chip{display:inline-flex;align-items:center;gap:6px;padding:6px 10px;border-radius:999px;background:rgba(255,255,255,.1);font-size:11.5px;font-weight:600}
+.chip i{width:6px;height:6px;border-radius:50%;background:#3FD17A}
+.chiprow{display:flex;gap:8px;flex-wrap:wrap;position:relative}
+.typing{display:inline-flex;gap:4px}
+.typing i{width:5px;height:5px;border-radius:50%;background:#fff;opacity:.5;animation:typing 1.2s infinite}
+.typing i:nth-child(2){animation-delay:.2s}.typing i:nth-child(3){animation-delay:.4s}
+.task{display:flex;align-items:center;gap:10px}
+.cbx{width:18px;height:18px;border-radius:5px;border:1.5px solid rgba(255,255,255,.4);flex:none;display:flex;align-items:center;justify-content:center;transition:all .3s}
+.cbx svg{width:12px;height:12px;opacity:0;transition:opacity .3s}
+.task.done .cbx{background:#3FD17A;border-color:#3FD17A}
+.task.done .cbx svg{opacity:1}
+.task.done span{opacity:.55;text-decoration:line-through}
+.task em{margin-left:auto;font-style:normal;font-size:11px;opacity:.6}
+.floor{display:grid;grid-template-columns:repeat(6,1fr);gap:8px;position:relative}
+.desk{aspect-ratio:1;border-radius:8px;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.12);font-size:10px;display:flex;align-items:center;justify-content:center;font-weight:600;transition:all .4s}
+.desk.busy{background:rgba(45,140,255,.35);border-color:rgba(45,140,255,.6)}
+.desk.pick{background:#3FD17A;border-color:#3FD17A;color:var(--navy-950);animation:pulse 1.6s infinite}
+.room{grid-column:span 3;aspect-ratio:auto;padding:10px;justify-content:flex-start;gap:8px}
+.legend{display:flex;gap:14px;font-size:11px;opacity:.75;margin-top:14px;position:relative}
+.legend span{display:flex;align-items:center;gap:6px}
+.legend i{width:10px;height:10px;border-radius:3px}
+.post-head{display:flex;align-items:center;gap:10px;margin-bottom:8px}
+.post-head .avatar{width:30px;height:30px;font-size:11px;background:var(--grad)}
+.post-head b{font-size:13px}.post-head small{display:block;font-size:10.5px;opacity:.6}
+.reactions{display:flex;gap:6px;margin-top:10px}
+.reactions span{padding:4px 9px;border-radius:999px;background:rgba(255,255,255,.1);font-size:11px;font-weight:600}
+.kudos{display:flex;align-items:center;gap:10px;background:var(--grad);border-radius:12px;padding:12px 14px;font-size:13px;font-weight:600;position:relative}
+.kudos svg{width:22px;height:22px;flex:none}
+
+/* ZoomMate (dark) */
+.dark{background:var(--navy-950);color:rgba(255,255,255,.72);overflow:hidden}
+.dark h2,.dark h3,.dark h4{color:#fff}
+.dark .eyebrow{color:#C9B6F0}
+.dark::before{content:"";position:absolute;width:700px;height:700px;right:-240px;top:-300px;border-radius:50%;background:radial-gradient(circle,rgba(107,79,168,.35),transparent 65%)}
+.dark::after{content:"";position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,.035) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.035) 1px,transparent 1px);background-size:44px 44px;mask-image:radial-gradient(ellipse at 30% 40%,#000 20%,transparent 70%);-webkit-mask-image:radial-gradient(ellipse at 30% 40%,#000 20%,transparent 70%);pointer-events:none}
+.dark .wrap{position:relative;z-index:1}
+.zm-grid{display:grid;grid-template-columns:.85fr 1.4fr;gap:56px;align-items:center}
+.dark .lead{color:rgba(255,255,255,.72)}
+.pill-note{display:flex;gap:12px;align-items:flex-start;margin-top:26px;padding:16px;border-radius:14px;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);font-size:14px}
+.pill-note svg{width:22px;height:22px;color:#3FD17A;flex:none;margin-top:1px}
+.zm-cards{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.zcard{padding:20px;border-radius:16px;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.09);transition:all .35s var(--ease);position:relative;overflow:hidden}
+.zcard::before{content:"";position:absolute;inset:0;background:radial-gradient(260px circle at var(--mx,50%) var(--my,0%),rgba(201,182,240,.16),transparent 60%);opacity:0;transition:opacity .3s}
+.zcard:hover{transform:translateY(-4px);border-color:rgba(201,182,240,.35)}
+.zcard:hover::before{opacity:1}
+.zcard .ico{background:rgba(255,255,255,.08);color:#C9B6F0;width:40px;height:40px}
+.zcard:hover .ico{background:var(--grad);color:#fff}
+.zcard h4{font-size:15px;margin-bottom:6px;position:relative}
+.zcard p{font-size:13.5px;line-height:1.55;position:relative}
+
+/* Coexistence */
+.co-grid{display:grid;grid-template-columns:1fr 1.35fr;gap:56px;align-items:start}
+.seg{display:grid;grid-template-columns:1fr 1fr;position:relative;padding:5px;border-radius:14px;background:var(--soft);border:1px solid var(--line);margin-bottom:18px}
+.seg button{position:relative;z-index:1;padding:12px;font-weight:700;font-size:14.5px;color:var(--body);transition:color .3s;border-radius:10px}
+.seg button.active{color:#fff}
+.seg .thumb{position:absolute;top:5px;bottom:5px;left:5px;width:calc(50% - 5px);border-radius:10px;background:var(--navy-900);transition:transform .45s var(--ease);box-shadow:0 8px 18px -8px rgba(10,26,63,.6)}
+.seg.right .thumb{transform:translateX(100%)}
+.co-card{border:1px solid var(--line);border-radius:20px;overflow:hidden;box-shadow:var(--shadow);background:#fff}
+.co-row{display:grid;grid-template-columns:130px 1fr;gap:18px;padding:16px 22px;border-top:1px solid var(--line);align-items:start}
+.co-row:first-child{border-top:0}
+.co-row dt{display:flex;align-items:center;gap:8px;font-size:12.5px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--indigo)}
+.co-row dt svg{width:16px;height:16px}
+.co-row dd{font-size:14.5px;color:var(--ink);font-weight:500;transition:opacity .25s,transform .25s}
+.co-card.swap dd{opacity:0;transform:translateY(6px)}
+.consult{margin-top:26px;padding:22px;border-radius:18px;background:linear-gradient(135deg,var(--navy-900),var(--indigo));color:#fff;position:relative;overflow:hidden}
+.consult h4{color:#fff;font-size:18px;margin-bottom:6px}
+.consult p{font-size:14px;color:rgba(255,255,255,.75);margin-bottom:16px}
+.consult .motif{position:absolute;right:-20px;top:18px;width:120px;opacity:.25}
+.consult .motif span{background:#fff}
+
+/* Integrations + Audience */
+.marquee{overflow:hidden;mask-image:linear-gradient(90deg,transparent,#000 10%,#000 90%,transparent);-webkit-mask-image:linear-gradient(90deg,transparent,#000 10%,#000 90%,transparent);margin:30px 0 0}
+.track{display:flex;gap:12px;width:max-content;animation:marquee 38s linear infinite}
+.marquee:hover .track{animation-play-state:paused}
+.track.rev{animation-direction:reverse;margin-top:12px}
+.int{display:flex;align-items:center;gap:10px;padding:12px 18px;border-radius:12px;border:1px solid var(--line);background:#fff;font-weight:700;color:var(--ink);font-size:14px;white-space:nowrap}
+.int i{width:26px;height:26px;border-radius:7px;display:flex;align-items:center;justify-content:center;color:#fff;font-style:normal;font-size:11px;font-weight:800}
+.aud{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-top:56px}
+.acard{padding:24px;border-radius:var(--radius);background:#fff;border:1px solid var(--line);transition:all .35s var(--ease)}
+.acard:hover{background:var(--navy-900);transform:translateY(-4px);box-shadow:var(--shadow-lg)}
+.acard:hover h4{color:#fff}.acard:hover p{color:rgba(255,255,255,.7)}
+.acard:hover .ico{background:var(--grad);color:#fff}
+.acard h4{font-size:16px;margin-bottom:6px;transition:color .3s}
+.acard p{font-size:14px;transition:color .3s}
+.sub-head{display:flex;justify-content:space-between;align-items:end;gap:24px;flex-wrap:wrap}
+
+/* Why Sysgrate */
+.why{display:grid;grid-template-columns:repeat(5,1fr);gap:0;border:1px solid var(--line);border-radius:22px;overflow:hidden;margin-top:36px;background:#fff}
+.witem{padding:26px 22px;border-left:1px solid var(--line);position:relative;transition:background .3s}
+.witem:first-child{border-left:0}
+.witem:hover{background:var(--soft)}
+.witem .num{font-size:12px;font-weight:800;color:var(--muted);letter-spacing:.1em}
+.witem .ico{margin:14px 0}
+.witem h4{font-size:15.5px;margin-bottom:6px}
+.witem p{font-size:13.5px}
+.cta-band{margin-top:28px;border-radius:24px;padding:44px 48px;background:linear-gradient(120deg,var(--navy-950) 0%,var(--navy-800) 55%,var(--indigo) 100%);color:#fff;display:grid;grid-template-columns:1.4fr auto;gap:30px;align-items:center;position:relative;overflow:hidden}
+.cta-band h2{color:#fff;font-size:clamp(24px,2.8vw,34px);margin-bottom:8px}
+.cta-band p{color:rgba(255,255,255,.75);max-width:560px}
+.cta-band .actions{display:flex;gap:12px;flex-wrap:wrap;position:relative;z-index:1}
+.cta-band .motif{position:absolute;right:30%;top:-10px;width:200px;opacity:.12;transform:rotate(-8deg)}
+.cta-band .motif span{background:#fff;height:14px}
+
+/* FAQ */
+.faq-grid{display:grid;grid-template-columns:.75fr 1.6fr;gap:56px;align-items:start}
+.faq-cols{display:grid;grid-template-columns:1fr 1fr;gap:12px;align-items:start}
+.faq-col{display:flex;flex-direction:column;gap:12px}
+.qa{border:1px solid var(--line);border-radius:14px;background:#fff;transition:border-color .3s,box-shadow .3s}
+.qa.open{border-color:var(--navy-900);box-shadow:var(--shadow)}
+.qa button{width:100%;text-align:left;padding:16px 18px;display:flex;justify-content:space-between;gap:14px;align-items:center;font-weight:700;color:var(--ink);font-size:14.5px}
+.qa .pm{width:26px;height:26px;border-radius:8px;background:var(--soft);flex:none;position:relative;transition:background .3s}
+.qa .pm::before,.qa .pm::after{content:"";position:absolute;left:50%;top:50%;width:10px;height:2px;background:var(--ink);transform:translate(-50%,-50%);transition:transform .3s,background .3s}
+.qa .pm::after{transform:translate(-50%,-50%) rotate(90deg)}
+.qa.open .pm{background:var(--navy-900)}
+.qa.open .pm::before,.qa.open .pm::after{background:#fff}
+.qa.open .pm::after{transform:translate(-50%,-50%) rotate(0)}
+.qa .ans{display:grid;grid-template-rows:0fr;transition:grid-template-rows .4s var(--ease)}
+.qa.open .ans{grid-template-rows:1fr}
+.qa .ans>div{overflow:hidden}
+.qa .ans p{padding:0 18px 16px;font-size:14px}
+
+/* Footer */
+footer{background:var(--navy-950);color:rgba(255,255,255,.6);padding-block:44px 28px;font-size:14px}
+.foot{display:grid;grid-template-columns:1.3fr 1fr 1fr;gap:40px;align-items:start}
+.foot img{height:32px;filter:brightness(0) invert(1);margin-bottom:14px}
+.foot h5{color:#fff;font-size:13px;letter-spacing:.08em;text-transform:uppercase;margin-bottom:12px}
+.foot ul{list-style:none;display:grid;gap:8px}
+.foot a:hover{color:#fff}
+.markets{display:flex;flex-wrap:wrap;gap:8px}
+.markets span{padding:6px 12px;border-radius:999px;border:1px solid rgba(255,255,255,.15);font-size:12.5px;color:#fff}
+.copy{margin-top:34px;padding-top:20px;border-top:1px solid rgba(255,255,255,.1);display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px;font-size:12.5px}
+
+/* Modal */
+.modal{position:fixed;inset:0;z-index:200;display:flex;align-items:center;justify-content:center;padding:20px;background:rgba(6,15,42,.6);backdrop-filter:blur(6px);opacity:0;visibility:hidden;transition:all .3s}
+.modal.open{opacity:1;visibility:visible}
+.mbox{background:#fff;border-radius:22px;width:100%;max-width:520px;max-height:92vh;overflow:auto;box-shadow:var(--shadow-lg);transform:translateY(20px) scale(.98);transition:transform .35s var(--ease)}
+.modal.open .mbox{transform:none}
+.mhead{padding:24px 26px 0;display:flex;justify-content:space-between;gap:12px}
+.mhead h3{font-size:22px}
+.mhead p{font-size:14px;margin-top:4px}
+.close{width:36px;height:36px;border-radius:10px;background:var(--soft);flex:none;display:flex;align-items:center;justify-content:center}
+.close svg{width:18px;height:18px}
+form{padding:20px 26px 26px;display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.field{display:flex;flex-direction:column;gap:6px}
+.field.full{grid-column:1/-1}
+.field label{font-size:12.5px;font-weight:700;color:var(--ink)}
+.field input,.field select,.field textarea{font:inherit;font-size:14px;padding:11px 13px;border-radius:10px;border:1.5px solid var(--line);color:var(--ink);background:#fff;outline:none;transition:border-color .2s,box-shadow .2s;width:100%}
+.field input:focus,.field select:focus,.field textarea:focus{border-color:var(--indigo);box-shadow:0 0 0 4px rgba(46,49,146,.1)}
+.field textarea{resize:vertical;min-height:70px}
+form .btn{grid-column:1/-1;justify-content:center;margin-top:4px}
+.fine{grid-column:1/-1;font-size:12px;color:var(--muted);text-align:center}
+.success{padding:40px 26px;text-align:center;display:none}
+.success .ok{width:64px;height:64px;border-radius:50%;background:#E8F8EF;color:#18A957;display:flex;align-items:center;justify-content:center;margin:0 auto 16px}
+.success .ok svg{width:30px;height:30px}
+.success h3{margin-bottom:8px}
+
+/* Reveal */
+.reveal{opacity:0;transform:translateY(24px);transition:opacity .8s var(--ease),transform .8s var(--ease)}
+.reveal.in{opacity:1;transform:none}
+.d1{transition-delay:.08s}.d2{transition-delay:.16s}.d3{transition-delay:.24s}.d4{transition-delay:.32s}.d5{transition-delay:.4s}
+
+@keyframes blink{50%{opacity:.25}}
+@keyframes pulse{0%{box-shadow:0 0 0 0 rgba(63,209,122,.55)}70%{box-shadow:0 0 0 10px rgba(63,209,122,0)}100%{box-shadow:0 0 0 0 rgba(63,209,122,0)}}
+@keyframes floaty{0%,100%{transform:translateY(0)}50%{transform:translateY(-10px)}}
+@keyframes fadeUp{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
+@keyframes typing{0%,100%{opacity:.3;transform:translateY(0)}50%{opacity:1;transform:translateY(-3px)}}
+@keyframes marquee{to{transform:translateX(-50%)}}
+@keyframes drawIn{from{transform:skewX(-25deg) scaleX(0)}to{transform:skewX(-25deg) scaleX(1)}}
+.hero .motif span{transform-origin:left;animation:drawIn 1s var(--ease) both}
+.hero .motif span:nth-child(2){animation-delay:.1s}.hero .motif span:nth-child(3){animation-delay:.2s}.hero .motif span:nth-child(4){animation-delay:.3s}.hero .motif span:nth-child(5){animation-delay:.4s}.hero .motif span:nth-child(6){animation-delay:.5s}
+
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation:none!important;transition:none!important}
+  .reveal{opacity:1;transform:none}
+  html{scroll-behavior:auto}
+}
+
+/* Responsive */
+@media (max-width:1280px){
+  .nav-links{display:none}
+  .burger{display:flex}
+  .mobile-menu{position:fixed;top:64px;left:0;right:0;background:#fff;border-bottom:1px solid var(--line);padding:12px 24px 20px;flex-direction:column;gap:4px;z-index:49;box-shadow:var(--shadow)}
+  .mobile-menu.open{display:flex}
+  .mobile-menu a{padding:12px 0;font-weight:700;color:var(--ink);border-bottom:1px solid var(--line)}
+}
+@media (max-width:1080px){
+  .hero-grid,.value-grid,.zm-grid,.co-grid,.faq-grid{grid-template-columns:1fr;gap:40px}
+  .value-intro{position:static}
+  .why{grid-template-columns:repeat(3,1fr)}
+  .witem:nth-child(4){border-left:0}
+  .witem:nth-child(n+4){border-top:1px solid var(--line)}
+  .aud{grid-template-columns:repeat(2,1fr)}
+  .mock{transform:none}
+  .f2{left:-8px}
+}
+@media (max-width:760px){
+  section{padding-block:60px}
+  .nav-cta .btn-ghost{display:none}
+  .trust{grid-template-columns:1fr 1fr;gap:12px 16px}
+  .cards6,.zm-cards,.faq-cols{grid-template-columns:1fr}
+  .zm-cards{grid-template-columns:1fr 1fr}
+  .panel{grid-template-columns:1fr;padding:22px;gap:28px}
+  .tabs{display:grid;grid-template-columns:1fr 1fr;width:100%}
+  .tab{justify-content:center;padding:11px 8px;font-size:13.5px}
+  .co-row{grid-template-columns:1fr;gap:6px}
+  .why{grid-template-columns:1fr 1fr}
+  .witem{border-left:0!important;border-top:1px solid var(--line)}
+  .witem:nth-child(even){border-left:1px solid var(--line)!important}
+  .witem:nth-child(-n+2){border-top:0}
+  .witem:last-child{grid-column:1/-1}
+  .cta-band{grid-template-columns:1fr;padding:30px 24px}
+  .cta-band .btn{white-space:normal;width:100%;justify-content:center;text-align:center}
+  .foot{grid-template-columns:1fr}
+  .stat-row{grid-template-columns:repeat(3,1fr)}
+  .float{display:none}
+  form{grid-template-columns:1fr}
+}
+@media (max-width:480px){
+  .aud,.zm-cards{grid-template-columns:1fr}
+  .nav-cta .btn-primary{padding:10px 14px;font-size:13px}
+  .logo img{height:28px}
+  .hero-cta .btn{width:100%;justify-content:center}
+  .stat strong{font-size:21px}
+}
+</style>
+</head>
+<body>
+
+<div id="progress"></div>
+
+<!-- NAV -->
+<header class="nav" id="nav">
+  <div class="wrap">
+    <a href="#top" class="logo" aria-label="Sysgrate home"><img src="data:image/png;base64,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" alt="Sysgrate"></a>
+    <nav class="nav-links">
+      <a href="#value">Benefits</a>
+      <a href="#capabilities">Capabilities</a>
+      <a href="#zoommate">ZoomMate</a>
+      <a href="#coexistence">Microsoft 365</a>
+      <a href="#sysgrate">Why Sysgrate</a>
+      <a href="#faq">FAQs</a>
+    </nav>
+    <div class="nav-cta">
+      <button class="btn btn-ghost" data-open="expert">Talk to an Expert</button>
+      <button class="btn btn-primary" data-open="demo">Book a Demo</button>
+      <button class="burger" id="burger" aria-label="Open menu"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg></button>
+    </div>
+  </div>
+</header>
+<div class="mobile-menu" id="mobileMenu">
+  <a href="#value">Why Zoom Workplace</a><a href="#capabilities">Capabilities</a><a href="#zoommate">ZoomMate</a><a href="#coexistence">Microsoft 365</a><a href="#sysgrate">Why Sysgrate</a><a href="#faq">FAQs</a>
+</div>
+
+<main id="top">
+
+<!-- HERO -->
+<section class="hero">
+  <div class="wrap hero-grid">
+    <div>
+      <div class="badge reveal"><b>PLATINUM</b> Zoom Platinum Partner · Certified Zoom Architects</div>
+      <h1 class="reveal d1">Zoom Workplace for <span class="grad-text">Enterprise Teams</span></h1>
+      <p class="sub reveal d2">One app for the whole working day — with Zoom AI built into every part of it.</p>
+      <p class="desc reveal d2">Work can be complex. Bringing your collaboration tools together doesn't have to be. Zoom Workplace combines meetings, chat, docs, and more in a single workplace, with ZoomMate built in to help teams stay focused and collaborate with ease.</p>
+      <div class="hero-cta reveal d3">
+        <button class="btn btn-primary" data-open="demo">Book a Zoom Workplace Demo <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button>
+        <button class="btn btn-ghost" data-open="expert">Talk to a Zoom Workplace Expert</button>
+      </div>
+      <div class="trust reveal d4">
+        <div><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l2.9 6.3 6.9.7-5.2 4.6 1.5 6.8L12 17l-6.1 3.4 1.5-6.8L2.2 9l6.9-.7z"/></svg>Zoom Platinum Partner</div>
+        <div><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="6"/><path d="M8.2 13.2 7 22l5-3 5 3-1.2-8.8"/></svg>Certified Zoom Architects</div>
+        <div><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>24×7 Support</div>
+        <div><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="3"/><path d="M3 9h18M9 21V9"/></svg>Enterprise Deployment</div>
+      </div>
+    </div>
+
+    <div class="mock-wrap reveal d2">
+      <div class="motif stripes" aria-hidden="true"><span style="width:55%;margin-left:20%"></span><span style="width:60%;margin-left:8%"></span><span style="width:55%"></span><span style="width:60%;margin-left:40%"></span><span style="width:55%;margin-left:30%"></span><span style="width:55%;margin-left:20%"></span></div>
+      <div class="mock">
+        <div class="mock-top"><i></i><i></i><i></i><span>Zoom Workplace · Q3 Planning Review</span><div class="live">LIVE</div></div>
+        <div class="mock-body">
+          <div class="mock-side"><i class="on"></i><i></i><i></i><i></i><i></i></div>
+          <div class="mock-main">
+            <div class="tiles" id="tiles">
+              <div class="tile"><div class="avatar">AK</div><span class="nm">Anika · Ops</span></div>
+              <div class="tile"><div class="avatar">RM</div><span class="nm">Rahul · IT</span></div>
+              <div class="tile"><div class="avatar">SL</div><span class="nm">Sara · Finance</span></div>
+              <div class="tile"><div class="avatar">JT</div><span class="nm">James · SG</span></div>
+              <div class="tile"><div class="avatar">NA</div><span class="nm">Noor · UAE</span></div>
+              <div class="tile"><div class="avatar">+8</div><span class="nm">Boardroom 4</span></div>
+            </div>
+            <div class="ai-card">
+              <div class="ai-head"><div class="spark"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l1.8 5.6L19.5 9l-5.7 1.6L12 16l-1.8-5.4L4.5 9l5.7-1.4z"/><path d="M19 14l.9 2.6 2.6.9-2.6.9L19 21l-.9-2.6-2.6-.9 2.6-.9z"/></svg></div>ZoomMate · Meeting summary<em id="aiStatus">Summarising…</em></div>
+              <div class="ai-line"><span class="dot"></span><span><b>Decision:</b> Pilot rollout approved for 3 departments.</span></div>
+              <div class="ai-line"><span class="dot"></span><span><b>Action:</b> Rahul to enable SSO via Entra ID by Friday.</span></div>
+              <div class="ai-line"><span class="dot"></span><span><b>Next step:</b> Recap shared to #workplace-rollout chat.</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="float f1"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></div><div>Recap posted to chat<small>Just now · 4 action items</small></div></div>
+      <div class="float f2"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></div><div>Tasks created automatically<small>Synced to Docs & Calendar</small></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- VALUE -->
+<section id="value">
+  <div class="wrap value-grid">
+    <div class="value-intro">
+      <span class="eyebrow reveal">Why Businesses Choose Zoom Workplace</span>
+      <h2 class="h2 reveal d1">One Platform. Fewer Tools. <span class="grad-text">Greater Value.</span></h2>
+      <p class="lead reveal d2">Zoom Workplace brings essential collaboration capabilities together with AI, helping businesses reduce complexity, improve efficiency, and give teams a better way to work.</p>
+      <div class="note reveal d3">Sysgrate connects Zoom Workplace to your identity, productivity and business systems so users never leave the app to get work done.</div>
+      <div class="stat-row reveal d4">
+        <div class="stat"><strong data-count="1">0</strong><span>Unified app</span></div>
+        <div class="stat"><strong data-count="4">0</strong><span>APAC markets</span></div>
+        <div class="stat"><strong>24×7</strong><span>Expert support</span></div>
+      </div>
+    </div>
+    <div class="cards6">
+      <div class="vcard reveal"><div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 17l6-6 4 4 8-8"/><path d="M14 7h7v7"/></svg></div><h3>Better value for your investment</h3><p>Reduce overall technology costs while getting more from your collaboration platform.</p></div>
+      <div class="vcard reveal d1"><div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 7H6a4 4 0 0 0 0 8h3M15 7h3a4 4 0 0 1 0 8h-3M8 11h8"/></svg></div><h3>Fits into your existing setup</h3><p>Work seamlessly with the apps, systems, and processes your teams already rely on.</p></div>
+      <div class="vcard reveal d2"><div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4.5 16.5c-1.5 1.3-2 5-2 5s3.7-.5 5-2c.7-.8.7-2.1-.1-2.9a2.2 2.2 0 0 0-2.9-.1z"/><path d="M12 15l-3-3a22 22 0 0 1 2-3.9A12.9 12.9 0 0 1 22 2c0 2.7-.8 7.5-6 11a22.4 22.4 0 0 1-4 2z"/><path d="M9 12H4s.6-3 2-4c1.6-1.1 5 0 5 0M12 15v5s3-.6 4-2c1.1-1.6 0-5 0-5"/></svg></div><h3>Built for what's next</h3><p>Keep up with changing workplace needs through continuously evolving capabilities.</p></div>
+      <div class="vcard reveal d3"><div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M8 14s1.5 2 4 2 4-2 4-2M9 9h.01M15 9h.01"/></svg></div><h3>Simple for everyone</h3><p>Make everyday collaboration easier with an intuitive experience that teams can adopt quickly.</p></div>
+      <div class="vcard reveal d4"><div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m22 8-6 4 6 4V8z"/><rect x="2" y="6" width="14" height="12" rx="2"/></svg></div><h3>High-quality communication with AI</h3><p>Bring clear audio, video, and intelligent AI capabilities together to help teams work effectively.</p></div>
+      <div class="vcard reveal d5"><div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="m9 12 2 2 4-4"/></svg></div><h3>Enterprise-ready security</h3><p>Protect your business data with security and privacy features designed for modern organisations.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- CAPABILITIES -->
+<section id="capabilities" class="bg-soft">
+  <div class="wrap center">
+    <span class="eyebrow reveal">From Planning to Follow-Up, Make Meetings Smarter with AI</span>
+    <h2 class="h2 reveal d1">AI-first collaboration tools for simpler, more productive teamwork</h2>
+    <p class="lead reveal d2">Zoom Workplace capabilities, deployed and tuned by Sysgrate's certified engineers.</p>
+
+    <div class="tabs reveal d3" role="tablist">
+      <button class="tab active" data-tab="t1" role="tab"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>Communication</button>
+      <button class="tab" data-tab="t2" role="tab"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg>Productivity</button>
+      <button class="tab" data-tab="t3" role="tab"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21h18M5 21V7l7-4 7 4v14M9 21v-6h6v6"/></svg>Spaces</button>
+      <button class="tab" data-tab="t4" role="tab"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.9M16 3.1a4 4 0 0 1 0 7.8"/></svg>Employee Engagement</button>
+    </div>
+  </div>
+
+  <div class="wrap">
+    <!-- Communication -->
+    <div class="panel active" id="t1">
+      <div>
+        <span class="eyebrow">Communication</span>
+        <h3>Bring modern workplace communication together in one seamless experience.</h3>
+        <div class="feat"><span class="n">01</span><div><h4>Connect everything in one place</h4><p>Meetings, chat, calling, email, and scheduling work together on a single platform, reducing app switching and keeping important context in one place.</p></div></div>
+        <div class="feat"><span class="n">02</span><div><h4>Work smarter with AI</h4><p>AI is built into communication workflows to summarize meetings, help draft messages, and automate follow-ups, giving teams more time to focus on meaningful conversations.</p></div></div>
+        <div class="feat"><span class="n">03</span><div><h4>Communicate with confidence</h4><p>High-quality video, clear audio, and enterprise-level security help teams collaborate smoothly while keeping interactions reliable and protected.</p></div></div>
+      </div>
+      <div class="visual">
+        <div class="vtitle">Team Chat · #regional-leads</div>
+        <div class="stack">
+          <div class="bubble"><small>Priya · Mumbai</small>Can we move the partner review to Thursday?</div>
+          <div class="bubble me"><small>You</small>Done — invite updated for all 3 regions.</div>
+          <div class="glass"><div style="display:flex;align-items:center;gap:8px;font-weight:700;margin-bottom:4px"><span class="spark" style="width:20px;height:20px"><svg viewBox="0 0 24 24" fill="currentColor" style="width:12px;height:12px;color:#fff"><path d="M12 2l1.8 5.6L19.5 9l-5.7 1.6L12 16l-1.8-5.4L4.5 9l5.7-1.4z"/></svg></span>ZoomMate is drafting a reply <span class="typing"><i></i><i></i><i></i></span></div><span style="opacity:.7">"Thursday works — I'll share the agenda and last quarter's summary beforehand."</span></div>
+          <div class="chiprow"><span class="chip"><i></i>Meetings</span><span class="chip"><i></i>Chat</span><span class="chip"><i></i>Phone</span><span class="chip"><i></i>Mail</span><span class="chip"><i></i>Scheduler</span></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Productivity -->
+    <div class="panel" id="t2">
+      <div>
+        <span class="eyebrow">Productivity</span>
+        <h3>Turn meetings into meaningful work.</h3>
+        <div class="feat"><span class="n">01</span><div><h4>Turn ideas into action, seamlessly</h4><p>Capture key points from meetings and transform them into tasks, documents, whiteboards, and video clips. Keep follow-ups on track and maintain momentum.</p></div></div>
+        <div class="feat"><span class="n">02</span><div><h4>Bring ideas to life visually</h4><p>Brainstorm, plan, and create together using AI-powered whiteboards and documents that make collaboration faster and more engaging.</p></div></div>
+        <div class="feat"><span class="n">03</span><div><h4>Keep projects moving and teams connected</h4><p>Create, organize, and share polished videos and meeting recordings, helping teams stay aligned without adding more meetings.</p></div></div>
+      </div>
+      <div class="visual">
+        <div class="vtitle">From meeting → action items</div>
+        <div class="stack" id="taskList">
+          <div class="glass task"><span class="cbx"><svg viewBox="0 0 24 24" fill="none" stroke="#0A1A3F" stroke-width="3.5"><path d="M20 6 9 17l-5-5"/></svg></span><span>Share rollout plan in Docs</span><em>Anika</em></div>
+          <div class="glass task"><span class="cbx"><svg viewBox="0 0 24 24" fill="none" stroke="#0A1A3F" stroke-width="3.5"><path d="M20 6 9 17l-5-5"/></svg></span><span>Map room estate on Whiteboard</span><em>Rahul</em></div>
+          <div class="glass task"><span class="cbx"><svg viewBox="0 0 24 24" fill="none" stroke="#0A1A3F" stroke-width="3.5"><path d="M20 6 9 17l-5-5"/></svg></span><span>Record onboarding Clip for pilot</span><em>Sara</em></div>
+          <div class="glass task"><span class="cbx"><svg viewBox="0 0 24 24" fill="none" stroke="#0A1A3F" stroke-width="3.5"><path d="M20 6 9 17l-5-5"/></svg></span><span>Schedule adoption review</span><em>James</em></div>
+          <div class="chiprow"><span class="chip"><i></i>Docs</span><span class="chip"><i></i>Whiteboard</span><span class="chip"><i></i>Clips</span><span class="chip"><i></i>Tasks</span></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Spaces -->
+    <div class="panel" id="t3">
+      <div>
+        <span class="eyebrow">Spaces</span>
+        <h3>Smarter, connected workplaces for hybrid teams.</h3>
+        <div class="feat"><span class="n">01</span><div><h4>Make hybrid collaboration more inclusive</h4><p>Help create a balanced meeting experience with AI-powered features that give both in-room and remote participants an equal voice and presence.</p></div></div>
+        <div class="feat"><span class="n">02</span><div><h4>Make office spaces work smarter</h4><p>Let employees easily find and book desks or meeting rooms, with smart suggestions and visibility into where colleagues are working for a more flexible workplace.</p></div></div>
+        <div class="feat"><span class="n">03</span><div><h4>Create a welcoming experience for everyone</h4><p>Simplify visitor check-ins, support quick badge printing, and keep employees informed about incoming mail and package deliveries.</p></div></div>
+      </div>
+      <div class="visual">
+        <div class="vtitle">Workspace booking · Floor 7</div>
+        <div class="floor" id="floor">
+          <div class="desk room glass" style="grid-column:span 3">Zoom Room · Everest<br><span class="chip" style="margin-left:auto"><i></i>Free</span></div>
+          <div class="desk room glass busy" style="grid-column:span 3">Zoom Room · Nilgiri<br><span class="chip" style="margin-left:auto">In use</span></div>
+        </div>
+        <div class="legend"><span><i style="background:rgba(255,255,255,.2)"></i>Available</span><span><i style="background:rgba(45,140,255,.6)"></i>Booked</span><span><i style="background:#3FD17A"></i>Suggested for you</span></div>
+        <div class="glass" style="margin-top:14px;display:flex;align-items:center;gap:10px"><span class="chip"><i></i>Visitor</span>Guest check-in complete · badge printed at Reception</div>
+      </div>
+    </div>
+
+    <!-- Engagement -->
+    <div class="panel" id="t4">
+      <div>
+        <span class="eyebrow">Employee Engagement</span>
+        <h3>Connect, inspire, and empower every employee.</h3>
+        <div class="feat"><span class="n">01</span><div><h4>Bring communication, culture, and community together</h4><p>Give every employee a voice by turning company updates into meaningful conversations, recognition into motivation, and engagement into real impact.</p></div></div>
+        <div class="feat"><span class="n">02</span><div><h4>Build stronger employee connections</h4><p>Keep distributed teams connected, appreciated, and motivated, helping drive greater engagement, a stronger sense of belonging, and better business results.</p></div></div>
+      </div>
+      <div class="visual">
+        <div class="vtitle">Company feed</div>
+        <div class="stack">
+          <div class="glass">
+            <div class="post-head"><div class="avatar">HR</div><div><b>People & Culture</b><small>Company update · 2h</small></div></div>
+            Town hall recording and Q&A highlights are now live for all regions.
+            <div class="reactions"><span>👏 128</span><span>💬 34</span><span>🌏 4 regions</span></div>
+          </div>
+          <div class="kudos"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="6"/><path d="M8.2 13.2 7 22l5-3 5 3-1.2-8.8"/></svg>Anika recognised the Singapore IT team for a smooth pilot launch</div>
+          <div class="glass" style="display:flex;justify-content:space-between;align-items:center"><span>Pulse survey · Hybrid work</span><span class="chip"><i></i>82% responded</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ZOOMMATE -->
+<section id="zoommate" class="dark">
+  <div class="wrap zm-grid">
+    <div>
+      <span class="eyebrow reveal">ZoomMate</span>
+      <h2 class="h2 reveal d1">AI that works across the whole day, <span class="grad-text" style="background:linear-gradient(90deg,#F2B6D9,#C9B6F0);-webkit-background-clip:text;background-clip:text">not just the meeting.</span></h2>
+      <p class="lead reveal d2">It spans meetings, chat, whiteboard, docs and mail — so context carries from one to the next instead of being retyped.</p>
+      <div class="pill-note reveal d3"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="m8 12 3 3 5-6"/></svg><span><b style="color:#fff">Included at no additional cost</b> with eligible paid Zoom licences.</span></div>
+      <div class="reveal d4" style="margin-top:26px"><button class="btn btn-light" data-open="demo">See ZoomMate in action <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button></div>
+    </div>
+    <div class="zm-cards">
+      <div class="zcard reveal"><div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6M8 13h8M8 17h5"/></svg></div><h4>Meeting summaries</h4><p>Recap and next steps generated automatically, shared to chat the moment the call ends.</p></div>
+      <div class="zcard reveal d1"><div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2 3 14h9l-1 8 10-12h-9z"/></svg></div><h4>Catch me up</h4><p>Join late and get an instant brief on what's been discussed and what's been asked of you.</p></div>
+      <div class="zcard reveal d2"><div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/><path d="M8 8h8M8 12h5"/></svg></div><h4>Chat thread summaries</h4><p>Long channels condensed into what happened and what needs a decision from you.</p></div>
+      <div class="zcard reveal d1"><div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9"/><path d="M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4z"/></svg></div><h4>Draft assistance</h4><p>Compose and refine chat replies, emails and documents in your own tone, not a template's.</p></div>
+      <div class="zcard reveal d2"><div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/><path d="M10 6.5h4a3 3 0 0 1 3 3V14"/></svg></div><h4>Whiteboard generation</h4><p>Turn a prompt into a starting diagram, then refine it with the team instead of staring at blank canvas.</p></div>
+      <div class="zcard reveal d3"><div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/></svg></div><h4>Ask ZoomMate</h4><p>Search across your meetings, chats, documents and connected apps from one place.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- COEXISTENCE -->
+<section id="coexistence">
+  <div class="wrap co-grid">
+    <div>
+      <span class="eyebrow reveal">Coexistence</span>
+      <h2 class="h2 reveal d1">Zoom Workplace with Microsoft 365</h2>
+      <p class="lead reveal d2">Already using Microsoft 365? You don't need to replace everything. Sysgrate can deploy Zoom Workplace alongside your existing Microsoft environment or help you evaluate a full consolidation.</p>
+      <div class="consult reveal d3">
+        <div class="motif" aria-hidden="true"><span style="width:60%;margin-left:25%"></span><span style="width:60%;margin-left:10%"></span><span style="width:60%"></span><span style="width:60%;margin-left:40%"></span></div>
+        <h4>Not sure which approach is right for you?</h4>
+        <p>Book a 20-minute consultation and we'll assess your current environment before recommending a path.</p>
+        <button class="btn btn-light" data-open="consult">Book a 20-min Consultation <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button>
+      </div>
+    </div>
+    <div class="reveal d2">
+      <div class="seg" id="seg">
+        <div class="thumb"></div>
+        <button class="active" data-mode="run">Run Alongside</button>
+        <button data-mode="con">Consolidate</button>
+      </div>
+      <dl class="co-card" id="coCard">
+        <div class="co-row"><dt><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="m16 8-6 2-2 6 6-2z"/></svg>Approach</dt><dd data-k="approach"></dd></div>
+        <div class="co-row"><dt><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="5"/><circle cx="12" cy="12" r="1"/></svg>Best when</dt><dd data-k="best"></dd></div>
+        <div class="co-row"><dt><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>Identity</dt><dd data-k="identity"></dd></div>
+        <div class="co-row"><dt><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>Calendar</dt><dd data-k="calendar"></dd></div>
+        <div class="co-row"><dt><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 17l6-6 4 4 8-8"/></svg>Rollout</dt><dd data-k="rollout"></dd></div>
+      </dl>
+    </div>
+  </div>
+</section>
+
+<!-- INTEGRATIONS + AUDIENCE -->
+<section class="bg-soft" id="integrations">
+  <div class="wrap">
+    <div class="sub-head">
+      <div>
+        <span class="eyebrow reveal">Integrations</span>
+        <h2 class="h2 reveal d1">Fits the stack you already run</h2>
+      </div>
+      <p class="lead reveal d2" style="max-width:520px">A flexible ecosystem of integrations brings the tools your teams already use into one connected workspace — reducing interruptions and keeping workflows linked across the organization.</p>
+    </div>
+  </div>
+  <div class="marquee reveal d2">
+    <div class="track" id="track1"></div>
+    <div class="track rev" id="track2"></div>
+  </div>
+  <div class="wrap">
+    <div class="center" style="margin-top:64px">
+      <span class="eyebrow reveal">Who is this for?</span>
+      <h2 class="h2 reveal d1">Built for Modern Enterprise Teams</h2>
+    </div>
+    <div class="aud" style="margin-top:28px">
+      <div class="acard reveal"><div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg></div><h4>IT & Digital Workplace Teams</h4><p>Simplify collaboration, identity, administration and governance.</p></div>
+      <div class="acard reveal d1"><div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v18h18"/><path d="M7 15l4-4 3 3 5-6"/></svg></div><h4>Business & Operations Leaders</h4><p>Reduce tool duplication and improve employee productivity.</p></div>
+      <div class="acard reveal d2"><div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg></div><h4>Hybrid & Distributed Teams</h4><p>Deliver consistent meeting experiences across locations.</p></div>
+      <div class="acard reveal d3"><div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="8" rx="2"/><rect x="2" y="14" width="20" height="8" rx="2"/><path d="M6 6h.01M6 18h.01"/></svg></div><h4>Enterprise IT Teams</h4><p>Integrate Zoom Workplace with Microsoft 365, Google Workspace, identity and business systems.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- WHY SYSGRATE -->
+<section id="sysgrate">
+  <div class="wrap">
+    <div class="sub-head">
+      <div>
+        <span class="eyebrow reveal">Why Deploy Zoom Workplace with Sysgrate?</span>
+        <h2 class="h2 reveal d1">One partner, from licensing to <span class="grad-text">ongoing support.</span></h2>
+      </div>
+      <p class="lead reveal d2" style="max-width:520px">From licensing and architecture to meeting rooms, migration and ongoing support, Sysgrate provides a single partner for your Zoom Workplace deployment.</p>
+    </div>
+    <div class="why">
+      <div class="witem reveal"><span class="num">01</span><div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l2.9 6.3 6.9.7-5.2 4.6 1.5 6.8L12 17l-6.1 3.4 1.5-6.8L2.2 9l6.9-.7z"/></svg></div><h4>Zoom Platinum Partner</h4><p>Enterprise deployment expertise from a recognised Zoom partner.</p></div>
+      <div class="witem reveal d1"><span class="num">02</span><div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="6"/><path d="M8.2 13.2 7 22l5-3 5 3-1.2-8.8"/></svg></div><h4>Certified Zoom Architects</h4><p>Architecture, implementation and migration led by certified specialists.</p></div>
+      <div class="witem reveal d2"><span class="num">03</span><div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 18v-6a9 9 0 0 1 18 0v6"/><path d="M21 19a2 2 0 0 1-2 2h-1v-6h3zM3 19a2 2 0 0 0 2 2h1v-6H3z"/></svg></div><h4>24×7 Support</h4><p>Ongoing support across your Zoom Workplace environment.</p></div>
+      <div class="witem reveal d3"><span class="num">04</span><div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2 2 7l10 5 10-5z"/><path d="m2 17 10 5 10-5M2 12l10 5 10-5"/></svg></div><h4>Enterprise Deployment</h4><p>Support from assessment and configuration through rollout and adoption.</p></div>
+      <div class="witem reveal d4"><span class="num">05</span><div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg></div><h4>India, Singapore, UAE & Malaysia</h4><p>Local delivery and support across key APAC markets.</p></div>
+    </div>
+
+    <div class="cta-band reveal">
+      <div class="motif" aria-hidden="true"><span style="width:60%;margin-left:25%"></span><span style="width:60%;margin-left:10%"></span><span style="width:60%"></span><span style="width:60%;margin-left:40%"></span><span style="width:60%;margin-left:28%"></span></div>
+      <div>
+        <h2>Ready to explore Zoom Workplace?</h2>
+        <p>Book a consultation with a certified Sysgrate architect to discuss your current environment and recommended deployment approach.</p>
+      </div>
+      <div class="actions">
+        <button class="btn btn-light" data-open="consult">Book a Zoom Workplace Consultation <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section id="faq" class="bg-soft">
+  <div class="wrap faq-grid">
+    <div>
+      <span class="eyebrow reveal">FAQs</span>
+      <h2 class="h2 reveal d1">Questions enterprise teams ask us most.</h2>
+      <p class="reveal d2">Can't find what you're looking for? Our certified architects are happy to walk through your environment.</p>
+      <div class="reveal d3" style="margin-top:22px"><button class="btn btn-primary" data-open="expert">Ask an Expert <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button></div>
+    </div>
+    <div class="faq-cols" id="faqCols"><div class="faq-col"></div><div class="faq-col"></div></div>
+  </div>
+</section>
+
+</main>
+
+<!-- FOOTER -->
+<footer>
+  <div class="wrap">
+    <div class="foot">
+      <div>
+        <img src="data:image/png;base64,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" alt="Sysgrate">
+        <p style="max-width:340px">Zoom Platinum Partner delivering enterprise collaboration, contact centre and modern workplace solutions.</p>
+      </div>
+      <div>
+        <h5>Explore</h5>
+        <ul><li><a href="#capabilities">Capabilities</a></li><li><a href="#zoommate">ZoomMate</a></li><li><a href="#coexistence">Microsoft 365 Coexistence</a></li><li><a href="https://www.sysgrate.com" target="_blank" rel="noopener">sysgrate.com</a></li></ul>
+      </div>
+      <div>
+        <h5>Local delivery & support</h5>
+        <div class="markets"><span>India</span><span>Singapore</span><span>UAE</span><span>Malaysia</span></div>
+        <button class="btn btn-outline-light" style="margin-top:18px" data-open="demo">Book a Demo</button>
+      </div>
+    </div>
+    <div class="copy"><span>© <span id="yr"></span> Sysgrate. All rights reserved.</span><span>Zoom, Zoom Workplace and related marks are trademarks of Zoom Communications, Inc.</span></div>
+  </div>
+</footer>
+
+<!-- MODAL -->
+<div class="modal" id="modal" aria-hidden="true">
+  <div class="mbox" role="dialog" aria-modal="true" aria-labelledby="mTitle">
+    <div class="mhead">
+      <div><h3 id="mTitle">Book a Zoom Workplace Demo</h3><p id="mSub">See Zoom Workplace and ZoomMate in action with a certified Sysgrate architect.</p></div>
+      <button class="close" id="mClose" aria-label="Close"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M18 6 6 18M6 6l12 12"/></svg></button>
+    </div>
+    <form id="leadForm" novalidate>
+      <input type="hidden" name="request_type" id="reqType" value="demo">
+      <div class="field"><label for="fn">Full name *</label><input id="fn" name="full_name" required autocomplete="name"></div>
+      <div class="field"><label for="em">Work email *</label><input id="em" name="work_email" type="email" required autocomplete="email"></div>
+      <div class="field"><label for="co">Company *</label><input id="co" name="company" required autocomplete="organization"></div>
+      <div class="field"><label for="ph">Phone</label><input id="ph" name="phone" type="tel" autocomplete="tel"></div>
+      <div class="field"><label for="us">Number of users</label><select id="us" name="users"><option value="">Select</option><option>Under 100</option><option>100 – 499</option><option>500 – 1,999</option><option>2,000 – 9,999</option><option>10,000+</option></select></div>
+      <div class="field"><label for="ct">Country</label><select id="ct" name="country"><option value="">Select</option><option>India</option><option>Singapore</option><option>United Arab Emirates</option><option>Malaysia</option><option>Other</option></select></div>
+      <div class="field full"><label for="env">Current environment</label><select id="env" name="environment"><option value="">Select</option><option>Microsoft 365 / Teams</option><option>Google Workspace</option><option>Existing Zoom customer</option><option>Mixed / other</option></select></div>
+      <div class="field full"><label for="msg">What would you like to discuss?</label><textarea id="msg" name="message" placeholder="e.g. Coexistence with Microsoft 365, Zoom Rooms, ZoomMate rollout"></textarea></div>
+      <button type="submit" class="btn btn-primary" id="submitBtn">Submit request <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button>
+      <p class="fine">A certified Sysgrate architect will contact you within one business day.</p>
+    </form>
+    <div class="success" id="success">
+      <div class="ok"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></div>
+      <h3>Thank you — request received</h3>
+      <p>Our team will be in touch shortly to schedule your session.</p>
+      <button class="btn btn-primary" style="margin-top:20px" id="doneBtn">Close</button>
+    </div>
+  </div>
+</div>
+
+<script>
+/* ===== CONFIG: set to your CRM / n8n / Zapier webhook URL to capture leads ===== */
+const FORM_ENDPOINT = "";
+
+(function(){
+  const $=(s,c=document)=>c.querySelector(s), $$=(s,c=document)=>[...c.querySelectorAll(s)];
+  $('#yr').textContent=new Date().getFullYear();
+
+  /* Nav, progress, active link */
+  const nav=$('#nav'), bar=$('#progress'), links=$$('.nav-links a');
+  const sections=links.map(a=>$(a.getAttribute('href')));
+  function onScroll(){
+    const y=window.scrollY, h=document.documentElement.scrollHeight-innerHeight;
+    nav.classList.toggle('scrolled',y>10);
+    bar.style.width=(h>0?y/h*100:0)+'%';
+    let idx=-1; sections.forEach((s,i)=>{ if(s && s.getBoundingClientRect().top<140) idx=i; });
+    links.forEach((a,i)=>a.classList.toggle('active',i===idx));
+  }
+  addEventListener('scroll',onScroll,{passive:true}); onScroll();
+
+  const burger=$('#burger'), mm=$('#mobileMenu');
+  burger.addEventListener('click',()=>mm.classList.toggle('open'));
+  $$('a',mm).forEach(a=>a.addEventListener('click',()=>mm.classList.remove('open')));
+
+  /* Reveal + counters */
+  const io=new IntersectionObserver(es=>es.forEach(e=>{
+    if(!e.isIntersecting) return;
+    e.target.classList.add('in');
+    $$('[data-count]',e.target).forEach(el=>{
+      const end=+el.dataset.count; let n=0; const step=()=>{ n++; el.textContent=n; if(n<end) setTimeout(step,180); }; step();
+    });
+    io.unobserve(e.target);
+  }),{threshold:.12,rootMargin:'0px 0px -40px 0px'});
+  $$('.reveal').forEach(el=>io.observe(el));
+
+  /* Hero: rotating speaker + AI summary loop */
+  const tiles=$$('#tiles .tile'); let sp=0;
+  setInterval(()=>{ tiles.forEach(t=>t.classList.remove('speaking')); tiles[sp%5].classList.add('speaking'); sp++; },1800);
+  tiles[0].classList.add('speaking');
+  const lines=$$('.ai-line'), status=$('#aiStatus');
+  function aiLoop(){
+    lines.forEach(l=>l.classList.remove('show')); status.textContent='Summarising…';
+    lines.forEach((l,i)=>setTimeout(()=>l.classList.add('show'),900+i*900));
+    setTimeout(()=>status.textContent='Shared to chat ✓',900+lines.length*900);
+    setTimeout(aiLoop,9000);
+  }
+  aiLoop();
+
+  /* Tabs */
+  const tabs=$$('.tab');
+  let taskTimer;
+  function showTab(id){
+    tabs.forEach(t=>t.classList.toggle('active',t.dataset.tab===id));
+    $$('.panel').forEach(p=>p.classList.toggle('active',p.id===id));
+    if(id==='t2') runTasks();
+  }
+  tabs.forEach(t=>t.addEventListener('click',()=>{ showTab(t.dataset.tab); clearInterval(autoTab); }));
+  let tabIdx=0;
+  const autoTab=setInterval(()=>{
+    const r=$('#capabilities').getBoundingClientRect();
+    if(r.top<innerHeight*.5 && r.bottom>innerHeight*.5){ tabIdx=(tabs.findIndex(t=>t.classList.contains('active'))+1)%tabs.length; showTab(tabs[tabIdx].dataset.tab); }
+  },7000);
+
+  function runTasks(){
+    clearTimeout(taskTimer);
+    const ts=$$('#taskList .task'); ts.forEach(t=>t.classList.remove('done'));
+    ts.forEach((t,i)=>setTimeout(()=>t.classList.add('done'),600+i*700));
+  }
+
+  /* Floor plan */
+  const floor=$('#floor'); const busy=[1,2,5,7,8,11];
+  for(let i=0;i<12;i++){ const d=document.createElement('div'); d.className='desk'+(busy.includes(i)?' busy':'')+(i===9?' pick':''); d.textContent='D'+(i+1); floor.appendChild(d); }
+  setInterval(()=>{
+    const ds=$$('.desk:not(.room)',floor); const free=ds.filter(d=>!d.classList.contains('busy')&&!d.classList.contains('pick'));
+    const b=ds.filter(d=>d.classList.contains('busy'));
+    if(free.length&&b.length){ free[Math.floor(Math.random()*free.length)].classList.add('busy'); b[Math.floor(Math.random()*b.length)].classList.remove('busy'); }
+  },2200);
+
+  /* ZoomMate spotlight */
+  $$('.zcard').forEach(c=>c.addEventListener('mousemove',e=>{
+    const r=c.getBoundingClientRect(); c.style.setProperty('--mx',(e.clientX-r.left)+'px'); c.style.setProperty('--my',(e.clientY-r.top)+'px');
+  }));
+
+  /* Coexistence toggle */
+  const CO={
+    run:{approach:"Keep Microsoft 365 for mail, files and identity. Zoom Workplace handles meetings, rooms and video-first collaboration.",
+         best:"Microsoft is embedded in your identity and document workflow, but meeting quality and room experience are the pain point.",
+         identity:"SSO via Entra ID or Okta — users keep one set of credentials.",
+         calendar:"Two-way sync with Outlook and Google Calendar; scheduling stays where users already live.",
+         rollout:"Fastest path — pilot group live quickly, phased department rollout after."},
+    con:{approach:"Zoom Workplace becomes the primary layer, retiring overlapping meeting, chat and whiteboard licences.",
+         best:"You're carrying genuine licence duplication and want one console, one audit trail and one support contract.",
+         identity:"SSO retained; provisioning and deprovisioning automated through SCIM.",
+         calendar:"Zoom Calendar as primary, with migration of existing meeting series handled by Sysgrate.",
+         rollout:"Longer, phased programme with parallel running and a defined decommission plan."}
+  };
+  const seg=$('#seg'), card=$('#coCard');
+  function setMode(m,animate){
+    seg.classList.toggle('right',m==='con');
+    $$('button',seg).forEach(b=>b.classList.toggle('active',b.dataset.mode===m));
+    const fill=()=>$$('dd',card).forEach(d=>d.textContent=CO[m][d.dataset.k]);
+    if(!animate){ fill(); return; }
+    card.classList.add('swap'); setTimeout(()=>{ fill(); card.classList.remove('swap'); },220);
+  }
+  $$('button',seg).forEach(b=>b.addEventListener('click',()=>setMode(b.dataset.mode,true)));
+  setMode('run',false);
+
+  /* Integrations marquee */
+  const INT=[["Microsoft 365","#D83B01","M"],["Entra ID","#0078D4","E"],["Outlook","#0A64C8","O"],["Google Workspace","#1A73E8","G"],["Google Calendar","#34A853","31"],["Okta","#0B1F4B","ok"],["Salesforce","#00A1E0","sf"],["ServiceNow","#62D84E","sn"],["HubSpot","#FF7A59","H"],["Slack","#4A154B","#"],["Jira","#0052CC","J"],["Box","#0061D5","b"]];
+  const chip=([n,c,l])=>`<div class="int"><i style="background:${c}">${l}</i>${n}</div>`;
+  const half=Math.ceil(INT.length/2);
+  const a=INT.slice(0,half).concat(INT.slice(half)), b=INT.slice(half).concat(INT.slice(0,half));
+  $('#track1').innerHTML=(a.map(chip).join('')).repeat(2);
+  $('#track2').innerHTML=(b.map(chip).join('')).repeat(2);
+
+  /* FAQ */
+  const FAQ=[
+    ["What exactly is Zoom Workplace?","Zoom Workplace is Zoom's collaboration platform — meetings, team chat, whiteboard, docs, clips, scheduler, mail and calendar, plus Zoom Rooms for physical spaces — delivered as one app with ZoomMate running across it. Zoom Phone and Zoom Contact Center are separate products that plug into the same platform."],
+    ["Do we have to drop Microsoft Teams?","No. Most of our deployments run alongside an existing Microsoft 365 estate. Teams can stay for chat and document workflow while Zoom Workplace handles meetings and rooms, with SSO and calendar sync keeping it seamless for users. Sysgrate is a multi-vendor integrator — we'll tell you honestly if coexistence is the better commercial answer."],
+    ["Is ZoomMate an additional cost?","ZoomMate is included at no extra cost with eligible paid Zoom licences. Available features vary by plan, and it needs enabling and configuring at account level — including your data and retention settings — which is part of every Sysgrate deployment."],
+    ["Does ZoomMate train on our meeting content?","Zoom's stated position is that customer content such as audio, video, chat and files is not used to train Zoom's or third parties' AI models. We walk through the current data-handling and admin controls in detail during deployment so your security team can review them against your own policy."],
+    ["Can you handle our meeting room hardware too?","Yes. Sysgrate's Modern Workplace and AV practice designs, supplies, installs and supports Zoom Rooms — cameras, audio, displays, scheduling panels and cabling — across India, Singapore, the UAE and Malaysia. Software and room come under one contract."],
+    ["How long does a rollout take?","It depends on user count, room estate and how much migration is involved. We start with a pilot group so the plan is validated on real usage before wider rollout. Book a consultation and we'll give you an indicative timeline against your specific environment rather than a generic number."],
+    ["Where is our data hosted?","We support region-specific hosting, including India-based options, and architect deployments around your data residency requirements under the DPDP Act, Singapore's PDPA and applicable UAE regulations."],
+    ["What happens after go-live?","You get 24×7 support from certified engineers, proactive room health monitoring where AV is in scope, and adoption reviews measuring real usage against the goals set at discovery — not just a closed ticket queue."]
+  ];
+  const cols=$$('#faqCols .faq-col');
+  FAQ.forEach(([q,ans],i)=>{
+    const el=document.createElement('div'); el.className='qa reveal'+(i===0?' open':'');
+    el.innerHTML=`<button aria-expanded="${i===0}"><span>${q}</span><span class="pm"></span></button><div class="ans"><div><p>${ans}</p></div></div>`;
+    el.querySelector('button').addEventListener('click',()=>{
+      const open=!el.classList.contains('open');
+      $$('.qa').forEach(x=>{x.classList.remove('open');x.querySelector('button').setAttribute('aria-expanded','false');});
+      if(open){el.classList.add('open');el.querySelector('button').setAttribute('aria-expanded','true');}
+    });
+    el.dataset.i=i; io.observe(el);
+  });
+  const qas=$$('.qa');
+  function layoutFaq(){ const one=innerWidth<760; qas.forEach((el,i)=>cols[one?0:i%2].appendChild(el)); }
+  layoutFaq(); addEventListener('resize',layoutFaq);
+
+  /* Modal + form */
+  const modal=$('#modal'), form=$('#leadForm'), success=$('#success');
+  const COPY={
+    demo:["Book a Zoom Workplace Demo","See Zoom Workplace and ZoomMate in action with a certified Sysgrate architect."],
+    expert:["Talk to a Zoom Workplace Expert","Get answers on licensing, architecture, coexistence and rollout."],
+    consult:["Book a Zoom Workplace Consultation","A 20-minute session to assess your environment and recommend a deployment path."]
+  };
+  let lastFocus;
+  function openModal(type){
+    lastFocus=document.activeElement;
+    const [t,s]=COPY[type]||COPY.demo; $('#mTitle').textContent=t; $('#mSub').textContent=s; $('#reqType').value=type;
+    form.style.display=''; success.style.display='none';
+    modal.classList.add('open'); modal.setAttribute('aria-hidden','false'); document.body.style.overflow='hidden';
+    setTimeout(()=>$('#fn').focus(),250);
+  }
+  function closeModal(){ modal.classList.remove('open'); modal.setAttribute('aria-hidden','true'); document.body.style.overflow=''; if(lastFocus) lastFocus.focus(); }
+  $$('[data-open]').forEach(b=>b.addEventListener('click',()=>openModal(b.dataset.open)));
+  $('#mClose').addEventListener('click',closeModal); $('#doneBtn').addEventListener('click',closeModal);
+  modal.addEventListener('click',e=>{ if(e.target===modal) closeModal(); });
+  addEventListener('keydown',e=>{ if(e.key==='Escape'&&modal.classList.contains('open')) closeModal(); });
+
+  const FREE=/@(gmail|yahoo|hotmail|outlook|live|icloud|aol|proton)\./i;
+  form.addEventListener('submit',async e=>{
+    e.preventDefault();
+    let ok=true;
+    $$('[required]',form).forEach(f=>{ const bad=!f.value.trim()||(f.type==='email'&&!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(f.value)); f.style.borderColor=bad?'#E5484D':''; if(bad) ok=false; });
+    const em=$('#em'); if(ok&&FREE.test(em.value)){ em.style.borderColor='#E5484D'; em.setCustomValidity('Please use your work email'); em.reportValidity(); em.setCustomValidity(''); return; }
+    if(!ok) return;
+    const btn=$('#submitBtn'); btn.disabled=true; btn.style.opacity=.7; btn.firstChild.textContent='Submitting… ';
+    const data=Object.fromEntries(new FormData(form)); data.page=location.href; data.submitted_at=new Date().toISOString();
+    try{ if(FORM_ENDPOINT) await fetch(FORM_ENDPOINT,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(data)}); }catch(err){ console.error(err); }
+    btn.disabled=false; btn.style.opacity=''; btn.firstChild.textContent='Submit request ';
+    form.reset(); form.style.display='none'; success.style.display='block';
+    if(window.dataLayer) window.dataLayer.push({event:'lead_submit',request_type:data.request_type});
+  });
+})();
+</script>
+</body>
+</html>
