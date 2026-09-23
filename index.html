@@ -302,7 +302,7 @@ section{padding-block:84px;position:relative}
 .faq-col{display:flex;flex-direction:column;gap:12px}
 .qa{border:1px solid var(--line);border-radius:14px;background:#fff;transition:border-color .3s,box-shadow .3s}
 .qa.open{border-color:var(--navy-900);box-shadow:var(--shadow)}
-.qa button{width:100%;text-align:left;padding:16px 18px;display:flex;justify-content:space-between;gap:14px;align-items:center;font-weight:700;color:var(--ink);font-size:14.5px}
+.qa>.q{width:100%;text-align:left;padding:16px 18px;display:flex;justify-content:space-between;gap:14px;align-items:center;font-weight:700;color:var(--ink);font-size:14.5px}
 .qa .pm{width:26px;height:26px;border-radius:8px;background:var(--soft);flex:none;position:relative;transition:background .3s}
 .qa .pm::before,.qa .pm::after{content:"";position:absolute;left:50%;top:50%;width:10px;height:2px;background:var(--ink);transform:translate(-50%,-50%);transition:transform .3s,background .3s}
 .qa .pm::after{transform:translate(-50%,-50%) rotate(90deg)}
@@ -312,7 +312,16 @@ section{padding-block:84px;position:relative}
 .qa .ans{display:grid;grid-template-rows:0fr;transition:grid-template-rows .4s var(--ease)}
 .qa.open .ans{grid-template-rows:1fr}
 .qa .ans>div{overflow:hidden}
-.qa .ans p{padding:0 18px 16px;font-size:14px}
+.qa .ans p{padding:0 18px 14px;font-size:14px}
+.qa .ans p.short{color:var(--ink);font-weight:500}
+.qa .more{display:inline-flex;align-items:center;gap:6px;margin:0 18px 16px;padding:8px 14px;border-radius:999px;border:1.5px solid var(--line);font-size:12.5px;font-weight:700;color:var(--indigo);background:#fff;transition:all .25s var(--ease)}
+.qa .more:hover{border-color:var(--indigo);background:rgba(46,49,146,.05)}
+.qa .more svg{width:14px;height:14px;transition:transform .3s var(--ease)}
+.qa .more[aria-expanded="true"] svg{transform:rotate(180deg)}
+.qa .full{display:grid;grid-template-rows:0fr;transition:grid-template-rows .4s var(--ease)}
+.qa .full.open{grid-template-rows:1fr}
+.qa .full>div{overflow:hidden}
+.qa .full p{border-top:1px solid var(--line);padding-top:14px;margin:0 18px 16px;padding-inline:0}
 
 /* Footer */
 footer{background:var(--navy-950);color:rgba(255,255,255,.6);padding-block:44px 28px;font-size:14px}
@@ -745,7 +754,74 @@ form .btn{grid-column:1/-1;justify-content:center;margin-top:4px}
       <h2 class="h2 reveal d1">Questions enterprise teams ask us most.</h2>
       <div class="reveal d2" style="margin-top:22px"><button class="btn btn-primary" data-open="expert">Talk to a Zoom Workplace Expert <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button></div>
     </div>
-    <div class="faq-cols" id="faqCols"><div class="faq-col"></div><div class="faq-col"></div></div>
+    <div class="faq-cols" id="faqCols">
+      <div class="faq-col">
+        <div class="qa reveal open">
+          <button class="q" aria-expanded="true"><span>What exactly is Zoom Workplace?</span><span class="pm"></span></button>
+          <div class="ans"><div>
+            <p class="short">Zoom's collaboration platform — meetings, chat, whiteboard, docs, clips, scheduler, mail, calendar and Zoom Rooms — in one app.</p>
+            <button class="more" aria-expanded="false">Know more <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg></button>
+            <div class="full"><div><p>Zoom Workplace is Zoom's collaboration platform — meetings, team chat, whiteboard, docs, clips, scheduler, mail and calendar, plus Zoom Rooms for physical spaces — delivered as one app with AI Companion running across it. Zoom Phone and Zoom Contact Center are separate products that plug into the same platform.</p></div></div>
+          </div></div>
+        </div>
+        <div class="qa reveal">
+          <button class="q" aria-expanded="false"><span>Do we have to drop Microsoft Teams?</span><span class="pm"></span></button>
+          <div class="ans"><div>
+            <p class="short">No. Most deployments run alongside Microsoft 365, with SSO and calendar sync keeping it seamless.</p>
+            <button class="more" aria-expanded="false">Know more <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg></button>
+            <div class="full"><div><p>No. Most of our deployments run alongside an existing Microsoft 365 estate. Teams can stay for chat and document workflow while Zoom Workplace handles meetings and rooms, with SSO and calendar sync keeping it seamless for users. Sysgrate is a multi-vendor integrator — we'll tell you honestly if coexistence is the better commercial answer.</p></div></div>
+          </div></div>
+        </div>
+        <div class="qa reveal">
+          <button class="q" aria-expanded="false"><span>Is AI Companion an additional cost?</span><span class="pm"></span></button>
+          <div class="ans"><div>
+            <p class="short">No. It's included at no extra cost with eligible paid Zoom licences.</p>
+            <button class="more" aria-expanded="false">Know more <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg></button>
+            <div class="full"><div><p>AI Companion is included at no extra cost with eligible paid Zoom licences. Available features vary by plan, and it needs enabling and configuring at account level — including your data and retention settings — which is part of every Sysgrate deployment.</p></div></div>
+          </div></div>
+        </div>
+        <div class="qa reveal">
+          <button class="q" aria-expanded="false"><span>Does AI Companion train on our meeting content?</span><span class="pm"></span></button>
+          <div class="ans"><div>
+            <p class="short">Zoom's stated position is that customer content is not used to train Zoom's or third parties' AI models.</p>
+            <button class="more" aria-expanded="false">Know more <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg></button>
+            <div class="full"><div><p>Zoom's stated position is that customer content such as audio, video, chat and files is not used to train Zoom's or third parties' AI models. We walk through the current data-handling and admin controls in detail during deployment so your security team can review them against your own policy.</p></div></div>
+          </div></div>
+        </div>
+        <div class="qa reveal">
+          <button class="q" aria-expanded="false"><span>Can you handle our meeting room hardware too?</span><span class="pm"></span></button>
+          <div class="ans"><div>
+            <p class="short">Yes. We design, supply, install and support Zoom Rooms — software and room under one contract.</p>
+            <button class="more" aria-expanded="false">Know more <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg></button>
+            <div class="full"><div><p>Yes. Sysgrate's Modern workplace and AV practice designs, supplies, installs and supports Zoom Rooms — cameras, audio, displays, scheduling panels and cabling — across India, Singapore, the UAE and Malaysia. Software and room come under one contract.</p></div></div>
+          </div></div>
+        </div>
+        <div class="qa reveal">
+          <button class="q" aria-expanded="false"><span>How long does a rollout take?</span><span class="pm"></span></button>
+          <div class="ans"><div>
+            <p class="short">It depends on users, rooms and migration. We start with a pilot group, then give you a timeline for your environment.</p>
+            <button class="more" aria-expanded="false">Know more <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg></button>
+            <div class="full"><div><p>It depends on user count, room estate and how much migration is involved. We start with a pilot group so the plan is validated on real usage before wider rollout. Book a consultation and we'll give you an indicative timeline against your specific environment rather than a generic number.</p></div></div>
+          </div></div>
+        </div>
+        <div class="qa reveal">
+          <button class="q" aria-expanded="false"><span>Where is our data hosted?</span><span class="pm"></span></button>
+          <div class="ans"><div>
+            <p class="short">Region-specific hosting, including India-based options, architected around your data residency requirements.</p>
+            <button class="more" aria-expanded="false">Know more <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg></button>
+            <div class="full"><div><p>We support region-specific hosting, including India-based options, and architect deployments around your data residency requirements under the DPDP Act, Singapore's PDPA and applicable UAE regulations.</p></div></div>
+          </div></div>
+        </div>
+        <div class="qa reveal">
+          <button class="q" aria-expanded="false"><span>What happens after go-live?</span><span class="pm"></span></button>
+          <div class="ans"><div>
+            <p class="short">24×7 support from certified engineers, room health monitoring where AV is in scope, and adoption reviews.</p>
+            <button class="more" aria-expanded="false">Know more <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg></button>
+            <div class="full"><div><p>You get 24×7 support from certified engineers, proactive room health monitoring where AV is in scope, and adoption reviews measuring real usage against the goals set at discovery — not just a closed ticket queue.</p></div></div>
+          </div></div>
+        </div>
+      </div><div class="faq-col"></div>
+    </div>
   </div>
 </section>
 
@@ -917,28 +993,23 @@ const FORM_ENDPOINT = "";
   $('#track2').innerHTML=(b.map(chip).join('')).repeat(2);
 
   /* FAQ */
-  const FAQ=[
-    ["What exactly is Zoom Workplace?","Zoom Workplace is Zoom's collaboration platform — meetings, team chat, whiteboard, docs, clips, scheduler, mail and calendar, plus Zoom Rooms for physical spaces — delivered as one app with AI Companion running across it. Zoom Phone and Zoom Contact Center are separate products that plug into the same platform."],
-    ["Do we have to drop Microsoft Teams?","No. Most of our deployments run alongside an existing Microsoft 365 estate. Teams can stay for chat and document workflow while Zoom Workplace handles meetings and rooms, with SSO and calendar sync keeping it seamless for users. Sysgrate is a multi-vendor integrator — we'll tell you honestly if coexistence is the better commercial answer."],
-    ["Is AI Companion an additional cost?","AI Companion is included at no extra cost with eligible paid Zoom licences. Available features vary by plan, and it needs enabling and configuring at account level — including your data and retention settings — which is part of every Sysgrate deployment."],
-    ["Does AI Companion train on our meeting content?","Zoom's stated position is that customer content such as audio, video, chat and files is not used to train Zoom's or third parties' AI models. We walk through the current data-handling and admin controls in detail during deployment so your security team can review them against your own policy."],
-    ["Can you handle our meeting room hardware too?","Yes. Sysgrate's Modern workplace and AV practice designs, supplies, installs and supports Zoom Rooms — cameras, audio, displays, scheduling panels and cabling — across India, Singapore, the UAE and Malaysia. Software and room come under one contract."],
-    ["How long does a rollout take?","It depends on user count, room estate and how much migration is involved. We start with a pilot group so the plan is validated on real usage before wider rollout. Book a consultation and we'll give you an indicative timeline against your specific environment rather than a generic number."],
-    ["Where is our data hosted?","We support region-specific hosting, including India-based options, and architect deployments around your data residency requirements under the DPDP Act, Singapore's PDPA and applicable UAE regulations."],
-    ["What happens after go-live?","You get 24×7 support from certified engineers, proactive room health monitoring where AV is in scope, and adoption reviews measuring real usage against the goals set at discovery — not just a closed ticket queue."]
-  ];
-  const cols=$$('#faqCols .faq-col');
-  FAQ.forEach(([q,ans],i)=>{
-    const el=document.createElement('div'); el.className='qa reveal'+(i===0?' open':'');
-    el.innerHTML=`<button aria-expanded="${i===0}"><span>${q}</span><span class="pm"></span></button><div class="ans"><div><p>${ans}</p></div></div>`;
-    el.querySelector('button').addEventListener('click',()=>{
+  const cols=$$('#faqCols .faq-col'), qas=$$('.qa');
+  qas.forEach(el=>{
+    io.observe(el);
+    const head=$('.q',el), more=$('.more',el), full=$('.full',el);
+    head.addEventListener('click',()=>{
       const open=!el.classList.contains('open');
-      $$('.qa').forEach(x=>{x.classList.remove('open');x.querySelector('button').setAttribute('aria-expanded','false');});
-      if(open){el.classList.add('open');el.querySelector('button').setAttribute('aria-expanded','true');}
+      qas.forEach(x=>{ x.classList.remove('open'); $('.q',x).setAttribute('aria-expanded','false'); });
+      if(open){ el.classList.add('open'); head.setAttribute('aria-expanded','true'); }
     });
-    el.dataset.i=i; io.observe(el);
+    more.addEventListener('click',e=>{
+      e.stopPropagation();
+      const on=!full.classList.contains('open');
+      full.classList.toggle('open',on);
+      more.setAttribute('aria-expanded',on);
+      more.firstChild.textContent=on?'Show less ':'Know more ';
+    });
   });
-  const qas=$$('.qa');
   function layoutFaq(){ const one=innerWidth<760; qas.forEach((el,i)=>cols[one||i<4?0:1].appendChild(el)); }
   layoutFaq(); addEventListener('resize',layoutFaq);
 
